@@ -1,0 +1,85 @@
+//  ********************************************************
+//
+// Template Style
+// _variables.scss
+//
+// ********************************************************
+
+@import "02functions";
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// 1. FONTS
+// 2. COLORS
+// 3. MEDIA-QUERIES
+// 4. TRANSFORMATION
+//
+///////////////////////////////////////////////////////////////////////////////
+
+// 1.FONTS --------------------------------------------------------------------
+$font-primary: "Open Sans", Arial, sans-serif;
+$font-title: "Oswald", "Arial", sans-serif;
+$font-subtitle: DroidSerif, Times, serif;
+$font-logo: Raleway, Times, serif;
+
+// 2.COLORS -------------------------------------------------------------------
+
+// base-colors
+$black: #202020;// чёрный
+$white: white; // белый
+$red: #E25050;
+$dark-red: #D14343;
+$light-gray:#A8A8A8;
+$gray: #777777;
+$dark-gray: #656565;
+
+// font-colors
+$color-white-font: $white;
+$color-gray-font: $gray;
+$color-light-gray-font: $light-gray;
+$color-dark-gray-font: $dark-gray;
+
+// nav-colors
+$color-nav-separator: black;
+$color-bg-nav: $black;
+$color-bg-nav-hover: $red;
+
+// links-colors
+$color-link: $white;
+$color-hover-link: $red;
+$color-visited-link: $black;
+
+// states-colors
+//$color-error: $white;
+//$color-warning: $red;
+//$color-: $black;
+
+// 3.MEDIA-QUERIES ------------------------------------------------------------
+// use: @media #{$small-up} {}
+
+// $base-font-size нужен для ф-ции em()
+$base-font-size: 16px;
+$screen: "only screen";
+
+$small:  em(320px);
+$medium: em(740px);
+$large:  em(980px);
+$wide:   em(1200px);
+
+$small-up:  "#{$screen} and (min-width:#{$small})";
+$medium-up: "#{$screen} and (min-width:#{$medium})";
+$large-up:  "#{$screen} and (min-width:#{$large})";
+$wide-up:   "#{$screen} and (min-width:#{$wide})";
+
+$retina: (
+	"#{$screen} and (-webkit-min-device-pixel-ratio: 2)",
+	"#{$screen} and (min--moz-device-pixel-ratio: 2)",
+	"#{$screen} and (-o-min-device-pixel-ratio: 2/1)",
+	"#{$screen} and (min-device-pixel-ratio: 2)",
+	"#{$screen} and (min-resolution: 192dpi)",
+	"#{$screen} and (min-resolution: 2dppx)"
+);
+
+// 4.TRANSFORMATION -----------------------------------------------------------
+//$radius-border:  4px !default;
+

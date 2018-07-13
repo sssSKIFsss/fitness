@@ -1,0 +1,33 @@
+{
+  "name": "fitness",
+  "description": "my front-end project",
+  "main": "gulpfile.js",
+  "authors": [
+    "SKIF"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sssSKIFsss/fitness/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    ".idea",
+    "node_modules",
+    "bower_components",
+    "tmp",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap4-dist": "*",
+    "droidserif-googlefont": "*",
+    "opensans-googlefont": "*",
+    "oswald-googlefont": "*",
+    "respond": "~1.4.2",
+    "html5shiv": "^3.7.3",
+    "jquery-waypoints": "^4.0.1",
+    "jquery.scrollTo": "^1.4.14"
+  },
+  "devDependencies": {
+  }
+}

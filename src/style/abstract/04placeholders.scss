@@ -1,0 +1,61 @@
+//  ********************************************************
+//
+// Template Style
+// _placeholders.scss
+//
+// ********************************************************
+
+@import "../abstract/01variables";
+
+// --------------------------------------------------------
+// Картинка в качестве фона
+// --------------------------------------------------------
+// Применение:
+// .image1 {
+//	@extend %bg-image;
+//	background-image: url('/img/image1.jpg')
+//}
+%bg-image {
+	width: 100%;
+	background: center center no-repeat;
+	background-size: cover;
+}
+
+// --------------------------------------------------------
+// Кнопка - плейсхолдер с примесью
+// --------------------------------------------------------
+// Применение:
+// .cta-btn {
+//     @include btn-background(green);
+// }
+// .main-btn {
+//     @include btn-background(orange);
+// }
+%btn {
+	padding: 10px;
+	color: $white;
+	cursor: pointer;
+	border: none;
+	box-shadow: none;
+	font-size: 14px;
+	width: 150px;
+	margin: 5px 0;
+	text-align: center;
+	display: block;
+}
+// примесь для кнопки
+@mixin btn-background($btn-background) {
+    @extend %btn;
+    background-color: $btn-background;
+    &:hover {
+        background-color: lighten($btn-background,10%);
+    }	
+}
+
+
+
+
+
+
+
+

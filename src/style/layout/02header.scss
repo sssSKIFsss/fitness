@@ -1,0 +1,35 @@
+//  ********************************************************
+//
+// Template Style
+// _header.scss
+//
+// ********************************************************
+
+@import "../abstract/01variables";
+
+.header {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 2.15em 1.5rem 1.85em 1.5rem;
+	background-color: $black;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	height: 100px;
+	@media #{$medium-up} {
+		padding: 2.44em 1.5rem 2.2em 1.5rem;
+		flex-wrap: nowrap;
+		justify-content: center;
+	}
+	// Логотип -----------------------------------------------------------------
+	&__logo {
+		flex: 0 0 15rem;
+		font-family: $font-logo;
+		font-size: 2.4rem;
+		a {
+			color: $color-white-font;
+		}
+	}
+}

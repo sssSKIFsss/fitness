@@ -1,0 +1,40 @@
+//  ********************************************************
+//
+// Template Style
+// _footer.scss
+//
+// ********************************************************
+
+@import "../abstract/01variables";
+.footer {
+	display: grid;
+	grid-gap: 1em;
+	grid-template-areas:
+		"title"
+		"item1"
+		"item2"
+		"item3"
+		"item4"
+		"item5"
+		"item6"
+		"item7"
+		"item8";
+	@media only screen and (min-width: 500px) {
+		grid-template-columns: 20% auto;
+		grid-template-areas:
+			"title title"
+			"item1 item2"
+			"item3 item4"
+			"item5 item6"
+			"item7 item8";
+	}
+	@media only screen and (min-width: 700px) {
+		grid-template-columns: 20% auto;
+		grid-template-areas:
+			"title title title"
+			"item1 item2 item3"
+			"item4 item5 item6"
+			"item7 item8";
+	}
+}
+
