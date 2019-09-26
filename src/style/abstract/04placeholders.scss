@@ -1,10 +1,9 @@
 //  ********************************************************
 //
 // Template Style
-// _placeholders.scss
+// 04placeholders.scss
 //
 // ********************************************************
-
 @import "../abstract/01variables";
 
 // --------------------------------------------------------
@@ -13,12 +12,12 @@
 // Применение:
 // .image1 {
 //	@extend %bg-image;
-//	background-image: url('/img/image1.jpg')
+//	background-image: url('/images/image1.jpg')
 //}
 %bg-image {
-	width: 100%;
-	background: center center no-repeat;
-	background-size: cover;
+  width: 100%;
+  background: center center no-repeat;
+  background-size: cover;
 }
 
 // --------------------------------------------------------
@@ -26,36 +25,31 @@
 // --------------------------------------------------------
 // Применение:
 // .cta-btn {
-//     @include btn-background(green);
+//   @include btn-background(green);
 // }
 // .main-btn {
-//     @include btn-background(orange);
+//   @include btn-background(orange);
 // }
 %btn {
-	padding: 10px;
-	color: $white;
-	cursor: pointer;
-	border: none;
-	box-shadow: none;
-	font-size: 14px;
-	width: 150px;
-	margin: 5px 0;
-	text-align: center;
-	display: block;
+  display: block;
+  margin: 5px 0;
+  padding: 10px;
+  color: $white;
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
+  font-size: 14px;
+  width: 150px;
+  text-align: center;
 }
+
 // примесь для кнопки
 @mixin btn-background($btn-background) {
-    @extend %btn;
-    background-color: $btn-background;
-    &:hover {
-        background-color: lighten($btn-background,10%);
-    }	
+  @extend %btn;
+
+  background-color: $btn-background;
+
+  &:hover {
+    background-color: lighten($btn-background, 10%);
+  }
 }
-
-
-
-
-
-
-
-

@@ -1,6 +1,9 @@
-bower_components/
 build/
+gulp_tasks/
+manifest/
 node_modules/
-src/font/
-temp/
-tmp/
+src/fonts/
+src/images/
+src/js/
+src/maket/
+

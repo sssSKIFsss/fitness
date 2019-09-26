@@ -5,115 +5,156 @@
 *
 * ======================================================= */
 @import "../abstract/01variables";
-
-@import "../../font/fontello/css/icons.css";
-@import "../../font/droidserif/css/droidserif.css";
-@import "../../font/opensans/css/opensans.css";
-@import "../../font/oswald/css/oswald.css";
-@import "../../font/raleway/css/raleway.css";
+@import "../../fonts/fontello/css/icons.css";
+@import "../../fonts/droidserif/css/droidserif.css";
+@import "../../fonts/opensans/css/opensans.css";
+@import "../../fonts/oswald/css/oswald.css";
+@import "../../fonts/raleway/css/raleway.css";
 
 // устанавливаем базовый размер шрифта в 10 px для простоты расчётов
-html { font-size: 62.5%; }
+html {
+  font-size: 62.5%;
+}
+
 // устанавливаем размер шрифта по умолчанию в 16px
 body {
-	font-size: 1.6rem;
-	line-height: 1.5;
-	// начальная степень масштабирования для мобильных не должна быть none!
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-	-moz-text-size-adjust: 100%;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  // начальная степень масштабирования для мобильных не должна быть none!
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
 }
-body, button, input, select, textarea {
-	background: $white;
-	font-family: $font-primary;
-	color: $color-gray-font;
+
+body,
+button,
+input,
+select,
+textarea {
+  background: $white;
+  font-family: $font-primary;
+  color: $color-gray-font;
 }
+
 %font_title {
-	font-family: $font-title;
-	font-weight: 700;
-	font-style: normal;
-	color: $white;
+  font-family: $font-title;
+  font-weight: 700;
+  font-style: normal;
+  color: $white;
 }
+
 .title_xl {
-	@extend %font_title;
-	font-size: 3.6rem;
+  @extend %font_title;
+
+  font-size: 3.6rem;
 }
+
 .title_lg {
-	@extend %font_title;
-	font-size: 3rem;
+  @extend %font_title;
+
+  font-size: 3rem;
 }
+
 .title_lg_black {
-	@extend %font_title;
-	font-size: 3rem;
-	color: $black;
+  @extend %font_title;
+
+  font-size: 3rem;
+  color: $black;
 }
+
 .title_lg_red {
-	@extend %font_title;
-	font-size: 3rem;
-	color: $red;
+  @extend %font_title;
+
+  font-size: 3rem;
+  color: $red;
 }
+
 .title_md {
-	@extend %font_title;
-	font-size: 2.4rem;
+  @extend %font_title;
+
+  font-size: 2.4rem;
 }
+
 .title_md_black {
-	@extend %font_title;
-	font-size: 2.4rem;
-	color:$black;
+  @extend %font_title;
+
+  font-size: 2.4rem;
+  color: $black;
 }
+
 .title_sm {
-	@extend %font_title;
-	font-size: 1.8rem;
+  @extend %font_title;
+
+  font-size: 1.8rem;
 }
+
 .title_sm_black {
-	@extend %font_title;
-	font-size: 1.8rem;
-	color:$black;
+  @extend %font_title;
+
+  font-size: 1.8rem;
+  color: $black;
 }
+
 .title_sm_red {
-	@extend %font_title;
-	font-size: 1.8rem;
-	color:$red;
+  @extend %font_title;
+
+  font-size: 1.8rem;
+  color: $red;
 }
+
 .title_xs {
-	@extend %font_title;
-	font-size: 1.4rem;
+  @extend %font_title;
+
+  font-size: 1.4rem;
 }
+
 .title_xs_black {
-	@extend %font_title;
-	font-size: 1.4rem;
-	color:$black;
+  @extend %font_title;
+
+  font-size: 1.4rem;
+  color: $black;
 }
+
 %font_txt {
-	font-family: $font-primary;
-	font-weight: 400;
-	font-style: normal;
-	color: $white;
+  font-family: $font-primary;
+  font-weight: 400;
+  font-style: normal;
+  color: $white;
 }
+
 .txt_lg {
-	@extend %font_txt;
-	font-size: 1.4rem;
+  @extend %font_txt;
+
+  font-size: 1.4rem;
 }
+
 .txt_md {
-	@extend %font_txt;
-	font-size: 1.3rem;
-	color: $gray;
+  @extend %font_txt;
+
+  font-size: 1.3rem;
+  color: $gray;
 }
+
 .txt_md_foot {
-	@extend %font_txt;
-	font-size: 1.3rem;
-	font-weight: 300;
+  @extend %font_txt;
+
+  font-size: 1.3rem;
+  font-weight: 300;
 }
+
 %font_txt_sm {
-	font-size: 1.2rem;
-	color: $gray;
+  font-size: 1.2rem;
+  color: $gray;
 }
+
 .txt_sm {
-	@extend %font_txt;
-	@extend %font_txt_sm;
+  @extend %font_txt;
+  @extend %font_txt_sm;
 }
+
 .txt_sm_foot {
-	@extend %font_txt;
-	@extend %font_txt_sm;
-	font-weight: 300;
+  @extend %font_txt;
+  @extend %font_txt_sm;
+
+  font-weight: 300;
 }

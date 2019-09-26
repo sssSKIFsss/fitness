@@ -1,5 +1,7 @@
-// gulp                  - development version
-// gulp --production     - production version
+/*  ******************************************************
+ *  gulp                  - development version
+ *  gulp --production     - production version
+ *  *****************************************************/
 
 'use strict';
 
@@ -10,10 +12,20 @@ var gulp = require('gulp');
 var isProduction = require('yargs').argv.production;
 
 // параметры совместимости с браузерами
-var browsers = 'ie >= 10';
-var users = '> 10%';
-var ignoreCssFiles = ['**/bower_components/**/*.*css',
-	'**/lib/**/*.*css', '**/font/**/*.css',
+// должны совпадать с "browserslist" из package.json
+var browsers = [
+	'> 1%',
+	'last 1 major version',
+	'not dead',
+	'Chrome >= 45',
+	'Firefox >= 38',
+	'Edge >= 12',
+	'Explorer >= 10',
+	'iOS >= 9',
+	'Safari >= 9',
+	'Android >= 4.4',
+	'Opera >= 30'];
+var ignoreCssFiles = ['**/font/**/*.css',
 	'**/tmp/**/*.css', '**/temp/**/*.css'];
 
 // js объект в который пропишем все нужные нам пути
@@ -26,29 +38,17 @@ var path = {
 			footer: 'src/js/footer/*.js'
 		},
 		style: {
-			abstract: [
-				'src/style/abstract/*.scss',
-				'src/style/base/*.scss',
-				'src/style/layout/*.scss',
-				'src/style/module/*.scss',
-				'src/style/state/*.scss',
-				'src/style/theme/*.scss',
-				'src/style/sprite/*.scss'
-			],
+			abstract: 'src/style/**/*.scss',
 			main: [
-				'src/style/base/*.scss',
-				'src/style/layout/*.scss',
-				'src/style/module/*.scss',
-				'src/style/state/*.scss',
-				'src/style/theme/*.scss',
-				'src/style/sprite/*.scss'
+				'src/style/**/*.scss',
+				'!src/style/abstract/*.scss'
 			]
 		},
 		img: [
-			'src/img/**/*.{png,jpg,gif,gz}',
-			'!src/img/sprite/**/*.*'
+			'src/images/**/*.{png,jpg,gif,gz}',
+			'!src/images/sprite/**/*.*'
 		],
-		font: 'src/font/**/*.{otf,eot,svg,ttf,woff,woff2,gz}'
+		font: 'src/fonts/**/*.{otf,eot,svg,ttf,woff,woff2,gz}'
 	},
 	dst: {
 		dir: 'build/',
@@ -74,19 +74,18 @@ var path = {
 		jsFooterHash: 'js_footer_hash.json'
 	},
 	watch: {
-		html: ['src/*.html', 'skif_components/**/*.html'],
+		html: ['src/*.html', 'src/templates/*.html'],
 		style: {
 			abstract: 'src/style/abstract/*.scss',
 			main: [
-				'!src/style/abstract/*.scss',
 				'src/style/**/*.scss',
-				'skif_components/**/*.scss',
-				'src/img/sprite/**/*.*'
+				'!src/style/abstract/*.scss',
+				'src/images/sprite/**/*.*'
 			]
 		},
-		js: ['src/js/**/*.js', 'skif_components/**/*.js'],
-		img: ['src/img/**/*.{png,jpg,gif}', '!src/img/sprite/**/*.*'],
-		font: 'src/font/**/*.*'
+		js: 'src/js/**/*.js',
+		img: ['src/images/**/*.{png,jpg,gif}', '!src/images/sprite/**/*.*'],
+		font: 'src/fonts/**/*.*'
 	}
 };
 
@@ -140,8 +139,7 @@ lazyRequireTask('html', './gulp_tasks/html', {
 
 // Сборка css:
 lazyRequireTask('full_css', './gulp_tasks/css', {
-	browser: browsers,
-	user: users,
+	browsers: browsers,
 	ignoreFiles: ignoreCssFiles,
 	src: path.src.style.abstract,
 	dst: {
@@ -158,8 +156,7 @@ lazyRequireTask('full_css', './gulp_tasks/css', {
 	}
 });
 lazyRequireTask('partial_css', './gulp_tasks/css', {
-	browser: browsers,
-	user: users,
+	browsers: browsers,
 	ignoreFiles: ignoreCssFiles,
 	src: path.src.style.main,
 	dst: {
@@ -206,7 +203,7 @@ lazyRequireTask('js_footer', './gulp_tasks/js', {
 // Перенос картинок +
 lazyRequireTask('img', './gulp_tasks/img', {
 	src: path.src.img,
-	dst: path.dst.imgDir
+	dst: path.dst.dir + path.dst.imgDir
 });
 
 // Сборка проекта

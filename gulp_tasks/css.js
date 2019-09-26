@@ -26,19 +26,6 @@ var rev = require('gulp-rev');
 var notify = require('gulp-notify');
 // ДВИЖОК POSTCSS ============================
 var postcss = require('gulp-postcss');
-// чтение scss формата в css-формате
-var scss = require('postcss-scss');
-var sprites = require('postcss-sprites');
-// автопрефикс и CSS4
-var cssnext = require('postcss-cssnext');
-// CSS-линтер
-var stylelint = require('stylelint');
-// проверка близкого совпадения цветов
-var colorguard = require('colorguard');
-// форматированный вывод сообщений на экран
-var reporter = require('postcss-reporter');
-var debug = require('gulp-debug');
-
 // Сборка scss:
 module.exports = function (opt) {
 	return function () {
@@ -51,73 +38,84 @@ module.exports = function (opt) {
 		return combiner(
 			// чтение исходных файлов
 			gulp.src(opt.src),
-			debug({title: 'src'}),
 			// отслеживание изменений при компиляции файла
 			IF(!opt.isProduction, sourcemaps.init()),
 
 			// фильтрация неизменённых файлов
 			// в скобках не путь, а просто название кеша
 			cached('style'),
-			debug({title: 'cached'}),
+
 			// движок  PostCSS
 			postcss([
+
 				// CSS-линтер
-				stylelint(),
-				// реализация @import scss,css-файлов в т.ч. для bootstrap
-				require('postcss-easy-import')({
-					extensions: ['.scss'],
-					prefix: '_'
+				require('stylelint'),
+
+				require('postcss-reporter')({
+					clearMessages: true,
+					throwError: true
 				}),
-				// автопрефикс и CSS4
-				cssnext(),
-				// спрайты
-				// SVG
-				sprites({
+
+				// спрайт SVG
+				require('postcss-sprites')({
 					stylesheetPath: opt.dst.css.dir,
 					spritePath: opt.dst.imgDir,
 					relativeTo: 'rule',
 					filterBy: function(image) {
-						if(!/img\/sprite\/svg/.test(image.url)) {
+						if(!/images\/sprite\/svg/.test(image.url)) {
 							return Promise.reject();
 						}
 						return Promise.resolve();
 					}
 				}),
-				// PNG
-				sprites({
+
+				// спрайт PNG
+				require('postcss-sprites')({
 					stylesheetPath: opt.dst.css.dir,
 					spritePath: opt.dst.imgDir,
 					relativeTo: 'rule',
 					retina: true,
 					filterBy: function(image) {
-						if(!/img\/sprite\/png/.test(image.url)) {
+						if(!/images\/sprite\/png/.test(image.url)) {
 							return Promise.reject();
 						}
 						return Promise.resolve();
 					}
 				}),
+
 				// require('postcss-at2x'),
+
 				// проверка совместимости с браузерами
 				require('doiuse')({
-					browsers: [opt.browser, opt.user],
-					ignore: ['rem'],
+					browsers: opt.browsers,
+					ignore: 'rem',
 					ignoreFiles: opt.ignoreFiles
 				}),
-				// проверка наличия схожих цветов
-				colorguard(),
-				// форматированный вывод сообщений на экран
-				reporter({clearReportedMessages: true})
-			// чтение scss формата в css-формате
-			], { syntax: scss }),
+
+				// реализация @import scss,css-файлов в т.ч. для bootstrap
+				require('postcss-easy-import')({
+					extensions: ['.scss'],
+					prefix: '_'
+				}),
+
+				// // автопрефикс
+				require('autoprefixer')
+
+			// ЧТЕНИЕ SCSS ФОРМАТА В CSS-ФОРМАТЕ
+			], { syntax: require('postcss-scss')}),
+
 			// компиляция scss в css
 			sass(),
+
 			// замена урлов
 			revReplace({manifest: gulp.src(opt.mn.dir + opt.mn.cssUrl)}),
+
 			// подтягивание к компилированию неизменённых файлов
 			remember(opt.dst.css.file),
-			debug({title: 'remember'}),
+
 			// склеивание винил-файлов
 			concat(opt.dst.css.file),
+
 			// IF-ELSE
 			IF(opt.isProduction,
 				// IF - сжатие и добавление хеш-суммы в имя файла
@@ -125,13 +123,18 @@ module.exports = function (opt) {
 				// ELSE - добавление в css карты изменений для отладки
 				sourcemaps.write()
 			),
+
 			// запись выходного файла
 			gulp.dest(opt.dst.css.dir),
+
 			// запись в манифест нового хеш-имени css-файла для вставки в html-файл
 			IF(opt.isProduction,
 				combiner(rev.manifest(opt.mn.cssHash), gulp.dest(opt.mn.dir))
 			)
-		// вывод сообщения в случае ошибки
-		).on('error', notify.onError());
+			// вывод сообщения в случае ошибки
+		).on('error', notify.onError({
+			message: 'Error: <%= error.message %>',
+			title: 'Error running something'
+		}));
 	};
 };

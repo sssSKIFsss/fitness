@@ -1,5 +1,5 @@
 {
-  "../build/css/style.css": "css/style.css",
-
-  "../build/js/": "js/"
+	"style/style.scss" : "css/style.css",
+	"js/header/header.js" : "js/header.js",
+	"js/footer/footer.js" : "js/footer.js"
  }

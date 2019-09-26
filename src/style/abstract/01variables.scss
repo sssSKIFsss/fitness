@@ -1,36 +1,34 @@
 //  ********************************************************
 //
-// Template Style
-// _variables.scss
-//
-// ********************************************************
-
-@import "02functions";
-
-///////////////////////////////////////////////////////////////////////////////
+// variables.scss
 //
 // 1. FONTS
 // 2. COLORS
 // 3. MEDIA-QUERIES
 // 4. TRANSFORMATION
 //
-///////////////////////////////////////////////////////////////////////////////
+// ********************************************************
 
-// 1.FONTS --------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// 1.FONTS                                                                  --
+// ----------------------------------------------------------------------------
+
 $font-primary: "Open Sans", Arial, sans-serif;
 $font-title: "Oswald", "Arial", sans-serif;
 $font-subtitle: DroidSerif, Times, serif;
 $font-logo: Raleway, Times, serif;
 
-// 2.COLORS -------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// 2.COLORS                                                                  --
+// ----------------------------------------------------------------------------
 
 // base-colors
-$black: #202020;// чёрный
+$black: #202020; // чёрный
 $white: white; // белый
-$red: #E25050;
-$dark-red: #D14343;
-$light-gray:#A8A8A8;
-$gray: #777777;
+$red: #e25050;
+$dark-red: #d14343;
+$light-gray: #a8a8a8;
+$gray: #777;
 $dark-gray: #656565;
 
 // font-colors
@@ -49,37 +47,66 @@ $color-link: $white;
 $color-hover-link: $red;
 $color-visited-link: $black;
 
-// states-colors
+//// states-colors
 //$color-error: $white;
 //$color-warning: $red;
 //$color-: $black;
 
-// 3.MEDIA-QUERIES ------------------------------------------------------------
-// use: @media #{$small-up} {}
-
-// $base-font-size нужен для ф-ции em()
-$base-font-size: 16px;
-$screen: "only screen";
-
-$small:  em(320px);
-$medium: em(740px);
-$large:  em(980px);
-$wide:   em(1200px);
-
-$small-up:  "#{$screen} and (min-width:#{$small})";
-$medium-up: "#{$screen} and (min-width:#{$medium})";
-$large-up:  "#{$screen} and (min-width:#{$large})";
-$wide-up:   "#{$screen} and (min-width:#{$wide})";
-
-$retina: (
-	"#{$screen} and (-webkit-min-device-pixel-ratio: 2)",
-	"#{$screen} and (min--moz-device-pixel-ratio: 2)",
-	"#{$screen} and (-o-min-device-pixel-ratio: 2/1)",
-	"#{$screen} and (min-device-pixel-ratio: 2)",
-	"#{$screen} and (min-resolution: 192dpi)",
-	"#{$screen} and (min-resolution: 2dppx)"
+// ----------------------------------------------------------------------------
+// 3. BOOTSTRAP redefine                                                     --
+// ----------------------------------------------------------------------------
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1230px
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px
 );
 
-// 4.TRANSFORMATION -----------------------------------------------------------
-//$radius-border:  4px !default;
+$link-hover-decoration: none;
 
+// ----------------------------------------------------------------------------
+// 4.HAMBURGER FOR MOBILE MENU
+// ----------------------------------------------------------------------------
+$bar-width: 3rem;
+$bar-height: 0.4rem;
+$bar-spacing: 0.5rem;
+
+// ----------------------------------------------------------------------------
+// 5.MEDIA-QUERIES                                                           --
+// ----------------------------------------------------------------------------
+// Используется, если нет медиа от феймворков, bootstrap, например
+// use: @media #{$small-up} {}
+
+//$screen: "only screen";
+//
+//$base-font-size: 16px; // нужен для ф-ции em()
+//$small:  em(576px);
+//$medium: em(768px);
+//$large:  em(992px);
+//$wide:   em(1200px);
+//
+//$small-up:  "#{$screen} and (min-width:#{$small})";
+//$medium-up: "#{$screen} and (min-width:#{$medium})";
+//$large-up:  "#{$screen} and (min-width:#{$large})";
+//$wide-up:   "#{$screen} and (min-width:#{$wide})";
+//
+//$retina: (
+//	"#{$screen} and (-webkit-min-device-pixel-ratio: 2)",
+//	"#{$screen} and (min--moz-device-pixel-ratio: 2)",
+//	"#{$screen} and (-o-min-device-pixel-ratio: 2/1)",
+//	"#{$screen} and (min-device-pixel-ratio: 2)",
+//	"#{$screen} and (min-resolution: 192dpi)",
+//	"#{$screen} and (min-resolution: 2dpi)"
+//);
+
+// ----------------------------------------------------------------------------
+// 6.TRANSFORMATION
+// ----------------------------------------------------------------------------
+//$radius-border:  4px !default;
